@@ -10,5 +10,21 @@
 #define Deck_hpp
 
 #include <stdio.h>
+#include "Card.hpp"
+#include <vector>
 
 #endif /* Deck_hpp */
+
+using namespace std;
+
+class Deck
+{
+public:
+    Deck();
+    int getSize();
+    
+    Card getCard(int pos);
+    
+private:
+    vector<Card> deck;
+};

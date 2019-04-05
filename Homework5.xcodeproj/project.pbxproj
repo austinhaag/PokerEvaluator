@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D85EF5AF2257F01700AC0DAB /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D85EF5AD2257F01700AC0DAB /* Deck.cpp */; };
 		D89A8A8E2257EDD300C104A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D89A8A8D2257EDD300C104A3 /* main.cpp */; };
+		D89A8A962257EE0A00C104A3 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D89A8A942257EE0A00C104A3 /* Card.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +25,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D85EF5AC2257EF6100AC0DAB /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
+		D85EF5AD2257F01700AC0DAB /* Deck.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Deck.cpp; sourceTree = "<group>"; };
+		D85EF5AE2257F01700AC0DAB /* Deck.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Deck.hpp; sourceTree = "<group>"; };
 		D89A8A8A2257EDD300C104A3 /* Homework5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Homework5; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89A8A8D2257EDD300C104A3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D89A8A942257EE0A00C104A3 /* Card.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Card.cpp; sourceTree = "<group>"; };
+		D89A8A952257EE0A00C104A3 /* Card.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Card.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				D89A8A8D2257EDD300C104A3 /* main.cpp */,
+				D89A8A942257EE0A00C104A3 /* Card.cpp */,
+				D85EF5AC2257EF6100AC0DAB /* catch.hpp */,
+				D89A8A952257EE0A00C104A3 /* Card.hpp */,
+				D85EF5AD2257F01700AC0DAB /* Deck.cpp */,
+				D85EF5AE2257F01700AC0DAB /* Deck.hpp */,
 			);
 			path = Homework5;
 			sourceTree = "<group>";
@@ -118,7 +130,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D85EF5AF2257F01700AC0DAB /* Deck.cpp in Sources */,
 				D89A8A8E2257EDD300C104A3 /* main.cpp in Sources */,
+				D89A8A962257EE0A00C104A3 /* Card.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
