@@ -24,7 +24,8 @@ public:
     int getSize();
     
     Card getCard(int pos);
-    
+    void Shuffle();
+	vector<Card> dealHand(int handSize);
 private:
     vector<Card> deck;
 };

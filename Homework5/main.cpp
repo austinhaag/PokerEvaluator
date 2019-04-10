@@ -84,4 +84,28 @@ TEST_CASE("Test Cards")
             cardsUsed.push_back(d1.getCard(i));
         }
     }
+    SECTION("Test shuffle")
+    {
+        Deck tempDeck;
+        Deck copyOfDeck = tempDeck;
+        bool retVal = false;
+		tempDeck.Shuffle();
+        for(int i =0; i< tempDeck.getSize(); i++)
+        {
+            if((tempDeck.getCard(i).getSuit() != copyOfDeck.getCard(i).getSuit()) || 
+            (tempDeck.getCard(i).getNumericValue() != copyOfDeck.getCard(i).getNumericValue())){
+                retVal = true;
+                break;
+            }
+        }
+        REQUIRE(retVal == true);
+    }
+	SECTION("Test Create Hand")
+	{
+		int handSize = 5;
+		Deck d1;
+		int originalSize = d1.getSize();
+		vector<Card> hand = d1.dealHand(handSize);
+		REQUIRE(d1.getSize() + handSize == originalSize);
+	}
 }
