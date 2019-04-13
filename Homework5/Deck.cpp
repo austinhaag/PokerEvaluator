@@ -1,10 +1,3 @@
-//
-//  Deck.cpp
-//  Homework5
-//
-//  Created by Austin Haag on 4/5/19.
-//  Copyright © 2019 Austin Haag. All rights reserved.
-//
 
 #include "Deck.hpp"
 #include "stdlib.h"
@@ -24,7 +17,7 @@ Deck::Deck()
         }
 
     }
-    Shuffle();
+    shuffle();
 }
 //--
 int Deck::getSize()
@@ -32,12 +25,17 @@ int Deck::getSize()
     return deck.size();
 }
 //--
+vector<Card> Deck::getDeck()
+{
+    return deck;
+}
+//--
 Card Deck::getCard(int pos)
 {
     return deck[pos];
 }
 
-void Deck::Shuffle()
+void Deck::shuffle()
 {
     vector<Card> newDeck;
     for (int i = getSize(); i > 0; i--)

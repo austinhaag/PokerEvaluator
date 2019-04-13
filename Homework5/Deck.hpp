@@ -1,13 +1,8 @@
-//
-//  Deck.hpp
-//  Homework5
-//
-//  Created by Austin Haag on 4/5/19.
-//  Copyright © 2019 Austin Haag. All rights reserved.
-//
 
 #ifndef Deck_hpp
 #define Deck_hpp
+
+#pragma once
 
 #include <stdio.h>
 #include "Card.hpp"
@@ -24,8 +19,12 @@ public:
     int getSize();
     
     Card getCard(int pos);
-    void Shuffle();
+    
+    void shuffle();
+    
 	vector<Card> dealHand(int handSize);
+    
+    vector<Card> getDeck();
 private:
     vector<Card> deck;
 };

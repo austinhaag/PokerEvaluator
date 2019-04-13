@@ -13,14 +13,12 @@ using namespace std;
 #include "catch.hpp"
 #include "Card.hpp"
 #include "Deck.hpp"
+#include "PokerEvaluator.hpp"
 #include <vector>
 
 int main(int argc, const char * argv[])
 {
-    cout << "Hello World!!!" << endl;
-    
     Catch::Session().run();
-    
     return 0;
 }
 
@@ -64,7 +62,10 @@ TEST_CASE("Test Cards")
         REQUIRE(c2.toString() == "10 of Hearts");
         REQUIRE(c3.toString() == "Ace of Spades");
     }
-    
+}
+
+TEST_CASE("Test Deck")
+{
     SECTION("Test Unique 52 Card Deck")
     {
         Deck d1;
@@ -89,7 +90,7 @@ TEST_CASE("Test Cards")
         Deck tempDeck;
         Deck copyOfDeck = tempDeck;
         bool retVal = false;
-		tempDeck.Shuffle();
+		tempDeck.shuffle();
         for(int i =0; i< tempDeck.getSize(); i++)
         {
             if((tempDeck.getCard(i).getSuit() != copyOfDeck.getCard(i).getSuit()) || 
@@ -108,4 +109,144 @@ TEST_CASE("Test Cards")
 		vector<Card> hand = d1.dealHand(handSize);
 		REQUIRE(d1.getSize() + handSize == originalSize);
 	}
+}
+
+TEST_CASE("Test PokerEvaluator")
+{
+    SECTION("Test High Card"){
+        vector<Card> highCard = {
+            Card(2, "Spades"),
+            Card(4, "Hearts"),
+            Card(6, "Clubs"),
+            Card(10, "Clubs"),
+            Card(8, "Hearts"),
+            Card(9, "Hearts"),
+            Card(13, "Diamonds"),
+        };
+        PokerEvaluator pe = PokerEvaluator(highCard);
+        REQUIRE(pe.evaluate() == "High Card");
+    }
+    SECTION("Test Pair")
+    {
+        vector<Card> pair = {
+            Card(10, "Clubs"),
+            Card(10, "Hearts"),
+            Card(9, "Clubs"),
+            Card(2, "Spades"),
+            Card(5, "Diamonds"),
+            Card(8, "Clubs"),
+            Card(7, "Clubs")
+        };
+        PokerEvaluator pe = PokerEvaluator(pair);
+        REQUIRE(pe.evaluate() == "Pair");
+    }
+    SECTION("Test Two Pair")
+    {
+        vector<Card> twoPair = {
+            Card(10, "Clubs"),
+            Card(10, "Hearts"),
+            Card(9, "Clubs"),
+            Card(9, "Spades"),
+            Card(8, "Diamonds"),
+            Card(8, "Clubs"),
+            Card(7, "Clubs")
+        };
+        PokerEvaluator pe = PokerEvaluator(twoPair);
+        REQUIRE(pe.evaluate() == "Two Pair");
+    }
+    SECTION("Test Three of a kind")
+    {
+        vector<Card> threeOfAKind = {
+            Card(10, "Clubs"),
+            Card(10, "Hearts"),
+            Card(4, "Clubs"),
+            Card(10, "Spades"),
+            Card(9, "Diamonds"),
+            Card(8, "Clubs"),
+            Card(7, "Clubs")
+        };
+        PokerEvaluator pe = PokerEvaluator(threeOfAKind);
+        REQUIRE(pe.evaluate() == "Three of a Kind");
+    }
+    SECTION("Test Straight"){
+        vector<Card> straight = {
+            Card(2, "Spades"),
+            Card(9, "Hearts"),
+            Card(6, "Clubs"),
+            Card(4, "Clubs"),
+            Card(5, "Hearts"),
+            Card(3, "Hearts"),
+            Card(2, "Diamonds"),
+        };
+        PokerEvaluator pe = PokerEvaluator(straight);
+        REQUIRE(pe.evaluate() == "Straight");
+    }
+    SECTION("Test Flush"){
+        vector<Card> flush = {
+            Card(5, "Hearts"),
+            Card(9, "Hearts"),
+            Card(6, "Hearts"),
+            Card(4, "Clubs"),
+            Card(11, "Hearts"),
+            Card(3, "Spades"),
+            Card(2, "Hearts"),
+        };
+        PokerEvaluator pe = PokerEvaluator(flush);
+        REQUIRE(pe.evaluate() == "Flush");
+    }
+    SECTION("Test Full House"){
+        vector<Card> fullHouse = {
+            Card(3, "Hearts"),
+            Card(3, "Clubs"),
+            Card(4, "Spades"),
+            Card(4, "Clubs"),
+            Card(11, "Hearts"),
+            Card(4, "Hearts"),
+            Card(2, "Hearts"),
+        };
+        PokerEvaluator pe = PokerEvaluator(fullHouse);
+        REQUIRE(pe.evaluate() == "Full House");
+    }
+    SECTION("Test Four of a kind")
+    {
+        vector<Card> fourOfAKind = {
+            Card(10, "Clubs"),
+            Card(10, "Hearts"),
+            Card(10, "Spades"),
+            Card(10, "Diamonds"),
+            Card(9, "Clubs"),
+            Card(8, "Clubs"),
+            Card(7, "Clubs")
+        };
+        PokerEvaluator pe = PokerEvaluator(fourOfAKind);
+        REQUIRE(pe.evaluate() == "Four of a Kind");
+    }
+    SECTION("Test Straight Flush")
+    {
+        vector<Card> straightFlush = {
+            Card(8, "Hearts"),
+            Card(9, "Hearts"),
+            Card(3, "Clubs"),
+            Card(4, "Clubs"),
+            Card(5, "Clubs"),
+            Card(6, "Clubs"),
+            Card(7, "Clubs")
+        };
+        PokerEvaluator pe = PokerEvaluator(straightFlush);
+        REQUIRE(pe.evaluate() == "Straight Flush");
+    }
+    SECTION("Test Royal Flush"){
+        vector<Card> royalFlush = {
+            Card(9, "Spades"),
+            Card(11, "Spades"),
+            Card(13, "Spades"),
+            Card(4, "Clubs"),
+            Card(10, "Spades"),
+            Card(12, "Spades"),
+            Card(2, "Hearts"),
+        };
+        PokerEvaluator pe = PokerEvaluator(royalFlush);
+        REQUIRE(pe.evaluate() == "Royal Flush");
+    }
+    
 }
